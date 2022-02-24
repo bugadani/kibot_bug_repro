@@ -19,6 +19,7 @@ jobs:
         dir: output
         schema: 'repro/repro.kicad_sch'
         board: 'repro/repro.kicad_pcb'
+        verbose: 4
 
     - name: Archive artifacts
       uses: actions/upload-artifact@v2
