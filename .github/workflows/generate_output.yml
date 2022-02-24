@@ -1,0 +1,27 @@
+name: Generate outputs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate artifacts
+      uses: INTI-CMNB/KiBot@v1_k6
+      with:
+        config: config.kibot.yaml
+        dir: output
+        schema: 'repro/repro.kicad_sch'
+        board: 'repro/repro.kicad_pcb'
+
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: fabrication
+        path: ./output

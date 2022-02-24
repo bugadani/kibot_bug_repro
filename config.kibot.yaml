@@ -1,0 +1,43 @@
+kibot:
+  version: 1
+
+preflight:
+  update_xml: false
+  run_drc: false
+  check_zone_fills: true
+  ignore_unconnected: false
+
+variants:
+- name: OPT_A
+  type: kicost
+  file_id: _A
+  variant: ^(ldo.OPT_A)$
+- name: OPT_B
+  type: kicost
+  file_id: _B
+  variant: ^(ldo.OPT_B)$
+
+outputs:
+- name: Schematic diagram (A)
+  type: pdf_sch_print
+  options:
+    output: '%f%v-%i.%x'
+    variant: OPT_A
+
+- name: Schematic diagram (B)
+  type: pdf_sch_print
+  options:
+    output: '%f%v-%i.%x'
+    variant: OPT_B
+
+- name: Interactive BoM (A)
+  type: ibom
+  options:
+    output: '%f%v-%i.%x'
+    variant: OPT_A
+
+- name: Interactive BoM (B)
+  type: ibom
+  options:
+    output: '%f%v-%i.%x'
+    variant: OPT_B
